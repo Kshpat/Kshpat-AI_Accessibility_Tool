@@ -1,0 +1,238 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+  <defs>
+    <!-- Linear Gradients for Layers -->
+    <linearGradient id="grad-input" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e94560" />
+      <stop offset="100%" stop-color="#c73e54" />
+    </linearGradient>
+    <linearGradient id="grad-processing" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0f3460" />
+      <stop offset="100%" stop-color="#16213e" />
+    </linearGradient>
+    <linearGradient id="grad-output" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00a676" />
+      <stop offset="100%" stop-color="#008c63" />
+    </linearGradient>
+    
+    <!-- Drop Shadow for boxes -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="750" fill="#ffffff" rx="16" />
+  
+  <!-- Title -->
+  <text x="600" y="50" font-family="Arial, sans-serif" font-weight="bold" font-size="24" fill="#1a1a2e" text-anchor="middle">System Architecture — Multimodal Accessibility Tool</text>
+  <text x="600" y="75" font-family="Arial, sans-serif" font-weight="normal" font-size="14" fill="#666666" text-anchor="middle">Block Diagram: Input → Processing → Output Pipeline</text>
+
+  <!-- INPUT LAYER -->
+  <g transform="translate(40, 110)">
+    <rect width="1120" height="120" rx="12" fill="#fafbfc" stroke="#e8e8e8" stroke-width="1.5"/>
+    <path d="M 12 0 L 40 0 L 40 120 L 12 120 Q 0 120 0 108 L 0 12 Q 0 0 12 0 Z" fill="url(#grad-input)" />
+    <text x="-60" y="25" transform="rotate(-90)" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="#ffffff" letter-spacing="1.5">INPUT LAYER</text>
+
+    <!-- Box 1: Desktop Screen -->
+    <g transform="translate(200, 20)">
+      <rect width="180" height="80" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5" filter="url(#shadow)"/>
+      <rect x="0" y="0" width="4" height="80" fill="#e94560" rx="2"/>
+      <circle cx="0" cy="0" r="12" fill="#e94560"/>
+      <text x="0" y="4" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="#fff" text-anchor="middle">1</text>
+      
+      <text x="90" y="25" font-size="24" text-anchor="middle">🖥️</text>
+      <text x="90" y="45" font-family="Arial, sans-serif" font-weight="bold" font-size="13" fill="#1a1a2e" text-anchor="middle">Desktop Screen</text>
+      <text x="90" y="62" font-family="Arial, sans-serif" font-weight="normal" font-size="11" fill="#666666" text-anchor="middle">Active Monitor Frame</text>
+    </g>
+
+    <!-- Box 6: Microphone Input -->
+    <g transform="translate(680, 20)">
+      <rect width="180" height="80" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5" filter="url(#shadow)"/>
+      <rect x="0" y="0" width="4" height="80" fill="#e94560" rx="2"/>
+      <circle cx="0" cy="0" r="12" fill="#e94560"/>
+      <text x="0" y="4" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="#fff" text-anchor="middle">6</text>
+      
+      <text x="90" y="25" font-size="24" text-anchor="middle">🎤</text>
+      <text x="90" y="45" font-family="Arial, sans-serif" font-weight="bold" font-size="13" fill="#1a1a2e" text-anchor="middle">Microphone Input</text>
+      <text x="90" y="62" font-family="Arial, sans-serif" font-weight="normal" font-size="11" fill="#666666" text-anchor="middle">User Voice Command</text>
+    </g>
+  </g>
+
+  <!-- Arrow from Box 1 to Box 2 -->
+  <g transform="translate(330, 230)">
+    <line x1="0" y1="0" x2="0" y2="40" stroke="#0f3460" stroke-width="2"/>
+    <polygon points="-5,35 5,35 0,45" fill="#0f3460"/>
+    <text x="10" y="20" font-family="Arial, sans-serif" font-size="11" fill="#555" font-weight="bold">Screenshot JPEG</text>
+  </g>
+
+  <!-- Arrow from Box 6 to Box 7 -->
+  <g transform="translate(810, 230)">
+    <line x1="0" y1="0" x2="0" y2="210" stroke="#0f3460" stroke-width="2"/>
+    <polygon points="-5,205 5,205 0,215" fill="#0f3460"/>
+    <text x="10" y="20" font-family="Arial, sans-serif" font-size="11" fill="#555" font-weight="bold">Voice Audio Stream</text>
+  </g>
+
+  <!-- PROCESSING LAYER -->
+  <g transform="translate(40, 280)">
+    <rect width="1120" height="210" rx="12" fill="#fafbfc" stroke="#e8e8e8" stroke-width="1.5"/>
+    <path d="M 12 0 L 40 0 L 40 210 L 12 210 Q 0 210 0 198 L 0 12 Q 0 0 12 0 Z" fill="url(#grad-processing)" />
+    <text x="-105" y="25" transform="rotate(-90)" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="#ffffff" letter-spacing="1.5">PROCESSING LAYER</text>
+
+    <!-- Top Row of Processing -->
+    <g transform="translate(200, 20)">
+      <rect width="180" height="85" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5" filter="url(#shadow)"/>
+      <rect x="0" y="0" width="4" height="85" fill="#0f3460" rx="2"/>
+      <circle cx="0" cy="0" r="12" fill="#0f3460"/>
+      <text x="0" y="4" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="#fff" text-anchor="middle">2</text>
+      
+      <text x="90" y="25" font-size="24" text-anchor="middle">📸</text>
+      <text x="90" y="45" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="#1a1a2e" text-anchor="middle">Screen Capture</text>
+      <text x="90" y="60" font-family="Arial, sans-serif" font-weight="normal" font-size="10" fill="#666666" text-anchor="middle">PyAutoGUI + Pillow</text>
+      <text x="90" y="75" font-family="Arial, sans-serif" font-weight="bold" font-size="10" fill="#0969da" text-anchor="middle">capture.py</text>
+    </g>
+    
+    <text x="410" y="70" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#0f3460">→</text>
+
+    <g transform="translate(440, 20)">
+      <rect width="180" height="85" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5" filter="url(#shadow)"/>
+      <rect x="0" y="0" width="4" height="85" fill="#0f3460" rx="2"/>
+      <circle cx="0" cy="0" r="12" fill="#0f3460"/>
+      <text x="0" y="4" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="#fff" text-anchor="middle">3</text>
+      
+      <text x="90" y="25" font-size="24" text-anchor="middle">🔄</text>
+      <text x="90" y="45" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="#1a1a2e" text-anchor="middle">Base64 Encoder</text>
+      <text x="90" y="60" font-family="Arial, sans-serif" font-weight="normal" font-size="10" fill="#666666" text-anchor="middle">Image → Text String</text>
+      <text x="90" y="75" font-family="Arial, sans-serif" font-weight="bold" font-size="10" fill="#0969da" text-anchor="middle">analyzer.py</text>
+    </g>
+
+    <text x="650" y="70" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#0f3460">→</text>
+
+    <g transform="translate(680, 20)">
+      <rect width="180" height="85" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5" filter="url(#shadow)"/>
+      <rect x="0" y="0" width="4" height="85" fill="#0f3460" rx="2"/>
+      <circle cx="0" cy="0" r="12" fill="#0f3460"/>
+      <text x="0" y="4" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="#fff" text-anchor="middle">4</text>
+      
+      <text x="90" y="25" font-size="24" text-anchor="middle">🧠</text>
+      <text x="90" y="45" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="#1a1a2e" text-anchor="middle">Vision AI Engine</text>
+      <text x="90" y="60" font-family="Arial, sans-serif" font-weight="normal" font-size="10" fill="#666666" text-anchor="middle">Groq / Gemini API</text>
+      <text x="90" y="75" font-family="Arial, sans-serif" font-weight="bold" font-size="10" fill="#0969da" text-anchor="middle">analyzer.py</text>
+    </g>
+
+    <text x="890" y="70" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#00a676">→</text>
+
+    <!-- Bottom Row of Processing -->
+    <g transform="translate(680, 150)">
+      <rect width="180" height="85" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5" filter="url(#shadow)"/>
+      <rect x="0" y="0" width="4" height="85" fill="#0f3460" rx="2"/>
+      <circle cx="0" cy="0" r="12" fill="#0f3460"/>
+      <text x="0" y="4" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="#fff" text-anchor="middle">7</text>
+      
+      <text x="90" y="25" font-size="24" text-anchor="middle">🗣️</text>
+      <text x="90" y="45" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="#1a1a2e" text-anchor="middle">Voice Listener</text>
+      <text x="90" y="60" font-family="Arial, sans-serif" font-weight="normal" font-size="10" fill="#666666" text-anchor="middle">SpeechRecognition</text>
+      <text x="90" y="75" font-family="Arial, sans-serif" font-weight="bold" font-size="10" fill="#0969da" text-anchor="middle">listener.py</text>
+    </g>
+    
+    <text x="890" y="200" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#0f3460">→</text>
+
+    <g transform="translate(920, 150)">
+      <rect width="180" height="85" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5" filter="url(#shadow)"/>
+      <rect x="0" y="0" width="4" height="85" fill="#0f3460" rx="2"/>
+      <circle cx="0" cy="0" r="12" fill="#0f3460"/>
+      <text x="0" y="4" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="#fff" text-anchor="middle">8</text>
+      
+      <text x="90" y="25" font-size="24" text-anchor="middle">🎯</text>
+      <text x="90" y="45" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="#1a1a2e" text-anchor="middle">AI Target Extractor</text>
+      <text x="90" y="60" font-family="Arial, sans-serif" font-weight="normal" font-size="10" fill="#666666" text-anchor="middle">Groq / Gemini Vision</text>
+      <text x="90" y="75" font-family="Arial, sans-serif" font-weight="bold" font-size="10" fill="#0969da" text-anchor="middle">actor.py</text>
+    </g>
+
+    <text x="910" y="200" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#0f3460">←</text>
+
+    <!-- Swapped the order to make flow make sense visually -->
+  </g>
+
+  <!-- Fix positioning of steps 8 and 9 -->
+  <g transform="translate(560, 430)">
+      <rect width="180" height="85" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5" filter="url(#shadow)"/>
+      <rect x="0" y="0" width="4" height="85" fill="#0f3460" rx="2"/>
+      <circle cx="0" cy="0" r="12" fill="#0f3460"/>
+      <text x="0" y="4" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="#fff" text-anchor="middle">8</text>
+      
+      <text x="90" y="25" font-size="24" text-anchor="middle">🎯</text>
+      <text x="90" y="45" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="#1a1a2e" text-anchor="middle">AI Target Extractor</text>
+      <text x="90" y="60" font-family="Arial, sans-serif" font-weight="normal" font-size="10" fill="#666666" text-anchor="middle">Groq / Gemini Vision</text>
+      <text x="90" y="75" font-family="Arial, sans-serif" font-weight="bold" font-size="10" fill="#0969da" text-anchor="middle">actor.py</text>
+  </g>
+
+  <g transform="translate(320, 430)">
+      <rect width="180" height="85" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5" filter="url(#shadow)"/>
+      <rect x="0" y="0" width="4" height="85" fill="#0f3460" rx="2"/>
+      <circle cx="0" cy="0" r="12" fill="#0f3460"/>
+      <text x="0" y="4" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="#fff" text-anchor="middle">9</text>
+      
+      <text x="90" y="25" font-size="24" text-anchor="middle">👁️</text>
+      <text x="90" y="45" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="#1a1a2e" text-anchor="middle">Windows OCR</text>
+      <text x="90" y="60" font-family="Arial, sans-serif" font-weight="normal" font-size="10" fill="#666666" text-anchor="middle">winrt.windows.media.ocr</text>
+      <text x="90" y="75" font-family="Arial, sans-serif" font-weight="bold" font-size="10" fill="#0969da" text-anchor="middle">actor.py</text>
+  </g>
+
+  <!-- Flow Arrows connecting inside processing layer (row 2) -->
+  <text x="730" y="480" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#0f3460">←</text>
+  <text x="515" y="480" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#0f3460">←</text>
+
+  <!-- Arrow from Vision AI Engine (Box 4) to Output TTS (Box 5) -->
+  <g transform="translate(850, 390)">
+    <line x1="0" y1="0" x2="0" y2="170" stroke="#00a676" stroke-width="2"/>
+    <polygon points="-5,165 5,165 0,175" fill="#00a676"/>
+    <text x="10" y="100" font-family="Arial, sans-serif" font-size="11" fill="#555" font-weight="bold">Description Text</text>
+  </g>
+
+  <!-- Arrow from Output TTS (Box 5) back up to Box 6? Let's just have the arrow from Box 9 to Box 10 -->
+  <g transform="translate(410, 520)">
+    <line x1="0" y1="0" x2="0" y2="40" stroke="#00a676" stroke-width="2"/>
+    <polygon points="-5,35 5,35 0,45" fill="#00a676"/>
+    <text x="10" y="20" font-family="Arial, sans-serif" font-size="11" fill="#555" font-weight="bold">Pixel Coordinates (X, Y)</text>
+  </g>
+
+  <!-- OUTPUT LAYER -->
+  <g transform="translate(40, 570)">
+    <rect width="1120" height="120" rx="12" fill="#fafbfc" stroke="#e8e8e8" stroke-width="1.5"/>
+    <path d="M 12 0 L 40 0 L 40 120 L 12 120 Q 0 120 0 108 L 0 12 Q 0 0 12 0 Z" fill="url(#grad-output)" />
+    <text x="-65" y="25" transform="rotate(-90)" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="#ffffff" letter-spacing="1.5">OUTPUT LAYER</text>
+
+    <!-- Box 5: TTS -->
+    <g transform="translate(900, 20)">
+        <rect width="180" height="80" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5" filter="url(#shadow)"/>
+        <rect x="0" y="0" width="4" height="80" fill="#00a676" rx="2"/>
+        <circle cx="0" cy="0" r="12" fill="#00a676"/>
+        <text x="0" y="4" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="#fff" text-anchor="middle">5</text>
+        
+        <text x="90" y="25" font-size="24" text-anchor="middle">🔊</text>
+        <text x="90" y="45" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="#1a1a2e" text-anchor="middle">Windows Native TTS</text>
+        <text x="90" y="60" font-family="Arial, sans-serif" font-weight="normal" font-size="10" fill="#666666" text-anchor="middle">System.Speech.Synthesis</text>
+        <text x="90" y="75" font-family="Arial, sans-serif" font-weight="bold" font-size="10" fill="#0969da" text-anchor="middle">narrator.py</text>
+    </g>
+    
+    <!-- Box 10: Mouse Automation -->
+    <g transform="translate(280, 20)">
+        <rect width="180" height="80" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5" filter="url(#shadow)"/>
+        <rect x="0" y="0" width="4" height="80" fill="#00a676" rx="2"/>
+        <circle cx="0" cy="0" r="12" fill="#00a676"/>
+        <text x="0" y="4" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="#fff" text-anchor="middle">10</text>
+        
+        <text x="90" y="25" font-size="24" text-anchor="middle">🖱️</text>
+        <text x="90" y="45" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="#1a1a2e" text-anchor="middle">Mouse Automation</text>
+        <text x="90" y="62" font-family="Arial, sans-serif" font-weight="normal" font-size="11" fill="#666666" text-anchor="middle">PyAutoGUI Move + Click</text>
+        <text x="90" y="75" font-family="Arial, sans-serif" font-weight="bold" font-size="10" fill="#0969da" text-anchor="middle">actor.py</text>
+    </g>
+  </g>
+
+  <!-- Complete Flow Footer -->
+  <g transform="translate(600, 725)">
+      <text x="0" y="0" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#444" text-anchor="middle">
+          Complete Data Flow: Ctrl+Alt+S → Screen Capture → Base64 Encode → Vision AI (Groq/Gemini) → TTS Audio Narration → Voice Listener → AI Target Extraction → Windows OCR (X,Y) → Mouse Click → "Done"
+      </text>
+  </g>
+
+</svg>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>System Architecture - Multimodal Accessibility Tool</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .diagram-container {
+    width: 1200px;
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    border-radius: 16px;
+    padding: 30px 40px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+
+  .diagram-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+  }
+
+  .diagram-subtitle {
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 28px;
+  }
+
+  .layer {
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 16px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1.5px solid #e8e8e8;
+  }
+
+  .layer-label {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    padding: 14px 10px;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    color: #fff;
+  }
+
+  .layer-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 24px;
+    background: #fafbfc;
+    flex-wrap: wrap;
+  }
+
+  .box {
+    background: #ffffff;
+    border: 1.5px solid #d0d7de;
+    border-radius: 10px;
+    padding: 14px 18px;
+    text-align: center;
+    min-width: 145px;
+    max-width: 180px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    transition: transform 0.2s;
+    position: relative;
+  }
+
+  .box-icon {
+    font-size: 26px;
+    margin-bottom: 6px;
+  }
+
+  .box-title {
+    font-weight: 600;
+    font-size: 12px;
+    color: #1a1a2e;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .box-tech {
+    font-size: 10px;
+    color: #666;
+    line-height: 1.3;
+  }
+
+  .box-file {
+    font-size: 9px;
+    color: #0969da;
+    font-weight: 500;
+    margin-top: 4px;
+  }
+
+  /* Layer Colors */
+  .input-layer .layer-label { background: linear-gradient(180deg, #e94560, #c73e54); }
+  .input-layer .box { border-left: 3px solid #e94560; }
+
+  .processing-layer .layer-label { background: linear-gradient(180deg, #0f3460, #16213e); }
+  .processing-layer .box { border-left: 3px solid #0f3460; }
+
+  .output-layer .layer-label { background: linear-gradient(180deg, #00a676, #008c63); }
+  .output-layer .box { border-left: 3px solid #00a676; }
+
+  /* Arrows between layers */
+  .arrow-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 4px 0;
+    gap: 8px;
+  }
+
+  .arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 14px solid #0f3460;
+  }
+
+  .arrow-label {
+    font-size: 10px;
+    color: #555;
+    font-weight: 500;
+  }
+
+  /* Flow arrows inside processing */
+  .flow-arrow {
+    font-size: 22px;
+    color: #0f3460;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Step numbers */
+  .step-badge {
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .input-layer .step-badge { background: #e94560; }
+  .processing-layer .step-badge { background: #0f3460; }
+  .output-layer .step-badge { background: #00a676; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1.5px solid #e8e8e8;
+  }
+
+  .footer-flow {
+    font-size: 11px;
+    color: #444;
+    line-height: 1.8;
+    font-weight: 500;
+  }
+
+  .footer-flow span {
+    background: #f0f4f8;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    border: 1px solid #d0d7de;
+  }
+
+  .footer-flow .arr {
+    color: #0f3460;
+    font-weight: 700;
+    padding: 0 2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="diagram-container">
+  <div class="diagram-title">System Architecture — Multimodal Accessibility Tool</div>
+  <div class="diagram-subtitle">Block Diagram: Input → Processing → Output Pipeline</div>
+
+  <!-- INPUT LAYER -->
+  <div class="layer input-layer">
+    <div class="layer-label">Input Layer</div>
+    <div class="layer-content">
+      <div class="box">
+        <div class="step-badge">1</div>
+        <div class="box-icon">🖥️</div>
+        <div class="box-title">Desktop Screen</div>
+        <div class="box-tech">Active Monitor Frame</div>
+      </div>
+      <div class="box">
+        <div class="step-badge">6</div>
+        <div class="box-icon">🎤</div>
+        <div class="box-title">Microphone Input</div>
+        <div class="box-tech">User Voice Command</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Arrow -->
+  <div class="arrow-row">
+    <div class="arrow-down"></div>
+    <div class="arrow-label">Screenshot JPEG</div>
+    <div style="width: 200px"></div>
+    <div class="arrow-label">Voice Audio Stream</div>
+    <div class="arrow-down"></div>
+  </div>
+
+  <!-- PROCESSING LAYER -->
+  <div class="layer processing-layer">
+    <div class="layer-label">Processing Layer</div>
+    <div class="layer-content">
+      <div class="box">
+        <div class="step-badge">2</div>
+        <div class="box-icon">📸</div>
+        <div class="box-title">Screen Capture</div>
+        <div class="box-tech">PyAutoGUI + Pillow</div>
+        <div class="box-file">capture.py</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="box">
+        <div class="step-badge">3</div>
+        <div class="box-icon">🔄</div>
+        <div class="box-title">Base64 Encoder</div>
+        <div class="box-tech">Image → Text String</div>
+        <div class="box-file">analyzer.py</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="box">
+        <div class="step-badge">4</div>
+        <div class="box-icon">🧠</div>
+        <div class="box-title">Vision AI Engine</div>
+        <div class="box-tech">Groq / Gemini API</div>
+        <div class="box-file">analyzer.py</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="box">
+        <div class="step-badge">7</div>
+        <div class="box-icon">🗣️</div>
+        <div class="box-title">Voice Listener</div>
+        <div class="box-tech">SpeechRecognition + PyAudio</div>
+        <div class="box-file">listener.py</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="box">
+        <div class="step-badge">8</div>
+        <div class="box-icon">🎯</div>
+        <div class="box-title">AI Target Extractor</div>
+        <div class="box-tech">Groq / Gemini Vision</div>
+        <div class="box-file">actor.py</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="box">
+        <div class="step-badge">9</div>
+        <div class="box-icon">👁️</div>
+        <div class="box-title">Windows OCR</div>
+        <div class="box-tech">winrt.windows.media.ocr</div>
+        <div class="box-file">actor.py</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Arrow -->
+  <div class="arrow-row">
+    <div class="arrow-down" style="border-top-color: #00a676;"></div>
+    <div class="arrow-label">Description Text</div>
+    <div style="width: 400px"></div>
+    <div class="arrow-label">Pixel Coordinates (X, Y)</div>
+    <div class="arrow-down" style="border-top-color: #00a676;"></div>
+  </div>
+
+  <!-- OUTPUT LAYER -->
+  <div class="layer output-layer">
+    <div class="layer-label">Output Layer</div>
+    <div class="layer-content">
+      <div class="box">
+        <div class="step-badge">5</div>
+        <div class="box-icon">🔊</div>
+        <div class="box-title">Windows Native TTS</div>
+        <div class="box-tech">System.Speech.Synthesis</div>
+        <div class="box-file">narrator.py</div>
+      </div>
+      <div class="box">
+        <div class="step-badge">10</div>
+        <div class="box-icon">🖱️</div>
+        <div class="box-title">Mouse Automation</div>
+        <div class="box-tech">PyAutoGUI Move + Click</div>
+        <div class="box-file">actor.py</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer: Complete Flow -->
+  <div class="footer">
+    <div class="footer-flow">
+      <strong>Complete Data Flow:</strong><br>
+      <span>Ctrl+Alt+S</span> <span class="arr">→</span>
+      <span>Screen Capture</span> <span class="arr">→</span>
+      <span>Base64 Encode</span> <span class="arr">→</span>
+      <span>Vision AI (Groq/Gemini)</span> <span class="arr">→</span>
+      <span>TTS Audio Narration</span> <span class="arr">→</span>
+      <span>Voice Listener</span> <span class="arr">→</span>
+      <span>AI Target Extraction</span> <span class="arr">→</span>
+      <span>Windows OCR (X,Y)</span> <span class="arr">→</span>
+      <span>Mouse Click</span> <span class="arr">→</span>
+      <span>"Done"</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
